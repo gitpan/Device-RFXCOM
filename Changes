@@ -1,0 +1,7 @@
+Revision history for Perl extension Device::RFXCOM.
+
+1.103240  2010-11-20 08:18:08 Europe/London
+        - Support for Digimax sensors.
+        - More flexible handling of duplicates.
+	- Initial CPAN release extracted from my code at
+          http://www.xpl-perl.org.uk/

@@ -1,0 +1,73 @@
+#!/usr/bin/perl
+
+# ABSTRACT: simple example script to control an RFXCOM RF transmitter
+
+
+use warnings;
+use strict;
+package main;
+BEGIN {
+  $main::VERSION = '1.103240';
+}
+use Device::RFXCOM::TX;
+
+my $device = shift or die "Usage: $0 device [key=value] ...\n";
+
+my $tx = Device::RFXCOM::TX->new(device => $device, map{split/=/}@ARGV);
+
+$|=1; # don't buffer output
+
+while (<STDIN>) {
+  chomp;
+  $tx->transmit(split /[\t =]/);
+  do {
+    $tx->wait_for_ack();
+  } until (!$tx->queue);
+}
+
+__END__
+=pod
+
+=head1 NAME
+
+main - simple example script to control an RFXCOM RF transmitter
+
+=head1 VERSION
+
+version 1.103240
+
+=head1 SYNOPSIS
+
+  # send x10 a1/on command via USB tty device
+  echo type=x10 command=on device=a1 | rfxcom-tx /dev/ttyUSB0
+
+  # send homeeasy message via a USB device with helpful name,
+  # see Device::RFXCOM::TX(3)
+  echo type=homeeasy command=on address=0x3333 unit=1 | \
+    rfxcom-tx /dev/rfxcom-tx
+
+  # read commands to send from stdin and send them via a
+  # network/wireless device, disable x10 (which defaults to on)
+  rfxcom-tx 10.0.0.1:10001 x10=0
+
+=head1 DESCRIPTION
+
+This script is an example of the usage of the L<Device::RFXCOM::TX>
+api.  It simply initializes the transmitter and reads messages
+specifications from stdin.  The keys and values given on the command
+line become the parameter hash for the L<Device::RFXCOM::TX#new>
+constructor and are documented in that module.
+
+=head1 AUTHOR
+
+Mark Hindess <soft-rfxcom@temporalanomaly.com>
+
+=head1 COPYRIGHT AND LICENSE
+
+This software is copyright (c) 2010 by Mark Hindess.
+
+This is free software; you can redistribute it and/or modify it under
+the same terms as the Perl 5 programming language system itself.
+
+=cut
+
