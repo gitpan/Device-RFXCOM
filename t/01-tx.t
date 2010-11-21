@@ -270,8 +270,12 @@ like($@, qr!^\Q$tx\E->transmit: magic encoding not supported at !,
 like(test_warn(sub { $tx->transmit(type => 'x10', command => 'on'); }),
      qr!->encode: Invalid x10\.basic message!, 'invalid x10 message');
 
-eval { my $res = $cv->recv; };
-like($@, qr!^closed at \Q$0\E line \d+$!, 'check close');
+SKIP: {
+  skip 'fails with some event loops', 1
+    unless ($AnyEvent::MODEL eq 'AnyEvent::Impl::Perl');
+  eval { my $res = $cv->recv; };
+  like($@, qr!^closed at \Q$0\E line \d+$!, 'check close');
+}
 
 undef $tx;
 undef $w;

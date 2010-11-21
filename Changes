@@ -1,5 +1,10 @@
 Revision history for Perl extension Device::RFXCOM.
 
+1.103250  2010-11-21 10:40:20 Europe/London
+        - Fix NAME sections in script Pod.
+        - Fix tests on EV event loop.
+        - Add w800-rx example script.
+
 1.103240  2010-11-20 08:18:08 Europe/London
         - Support for Digimax sensors.
         - More flexible handling of duplicates.

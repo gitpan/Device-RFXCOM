@@ -7,6 +7,7 @@ Makefile.PL
 README
 bin/rfxcom-rx
 bin/rfxcom-tx
+bin/w800-rx
 debian/changelog
 debian/compat
 debian/control

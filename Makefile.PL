@@ -26,6 +26,7 @@ my %WriteMakefileArgs = (
   'DISTNAME' => 'Device-RFXCOM',
   'EXE_FILES' => [
     'bin/rfxcom-tx',
+    'bin/w800-rx',
     'bin/rfxcom-rx'
   ],
   'LICENSE' => 'perl',
@@ -42,7 +43,7 @@ my %WriteMakefileArgs = (
     'Time::HiRes' => '0',
     'constant' => '0'
   },
-  'VERSION' => '1.103240',
+  'VERSION' => '1.103250',
   'test' => {
     'TESTS' => 't/*.t'
   }

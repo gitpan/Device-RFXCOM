@@ -2,7 +2,7 @@ use strict;
 use warnings;
 package Device::RFXCOM::Decoder::X10Security;
 BEGIN {
-  $Device::RFXCOM::Decoder::X10Security::VERSION = '1.103240';
+  $Device::RFXCOM::Decoder::X10Security::VERSION = '1.103250';
 }
 
 # ABSTRACT: Device::RFXCOM::Decoder::X10Security decode X10 Security RF messages
@@ -113,7 +113,7 @@ Device::RFXCOM::Decoder::X10Security - Device::RFXCOM::Decoder::X10Security deco
 
 =head1 VERSION
 
-version 1.103240
+version 1.103250
 
 =head1 SYNOPSIS
 

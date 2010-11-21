@@ -1,14 +1,11 @@
 #!/usr/bin/perl
 
 # ABSTRACT: simple example script to control an RFXCOM RF transmitter
+# PODNAME: rfxcom-tx
 
 
 use warnings;
 use strict;
-package main;
-BEGIN {
-  $main::VERSION = '1.103240';
-}
 use Device::RFXCOM::TX;
 
 my $device = shift or die "Usage: $0 device [key=value] ...\n";
@@ -25,16 +22,17 @@ while (<STDIN>) {
   } until (!$tx->queue);
 }
 
+
 __END__
 =pod
 
 =head1 NAME
 
-main - simple example script to control an RFXCOM RF transmitter
+rfxcom-tx - simple example script to control an RFXCOM RF transmitter
 
 =head1 VERSION
 
-version 1.103240
+version 1.103250
 
 =head1 SYNOPSIS
 
@@ -53,10 +51,23 @@ version 1.103240
 =head1 DESCRIPTION
 
 This script is an example of the usage of the L<Device::RFXCOM::TX>
-api.  It simply initializes the transmitter and reads messages
+API.  It simply initializes the transmitter and reads messages
 specifications from stdin.  The keys and values given on the command
 line become the parameter hash for the L<Device::RFXCOM::TX#new>
 constructor and are documented in that module.
+
+=head1 THANKS
+
+Special thanks to RFXCOM, L<http://www.rfxcom.com/>, for their
+excellent documentation and for giving me permission to use it to help
+me write this code.  I own a number of their products and highly
+recommend them.
+
+=head1 SEE ALSO
+
+L<Device::RFXCOM::TX>
+
+RFXCOM website: http://www.rfxcom.com/
 
 =head1 AUTHOR
 

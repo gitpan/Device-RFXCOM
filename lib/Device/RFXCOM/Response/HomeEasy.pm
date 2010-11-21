@@ -2,7 +2,7 @@ use strict;
 use warnings;
 package Device::RFXCOM::Response::HomeEasy;
 BEGIN {
-  $Device::RFXCOM::Response::HomeEasy::VERSION = '1.103240';
+  $Device::RFXCOM::Response::HomeEasy::VERSION = '1.103250';
 }
 
 # ABSTRACT: Device::RFXCOM::Response class for Home Easy message from RFXCOM receiver
@@ -55,7 +55,7 @@ Device::RFXCOM::Response::HomeEasy - Device::RFXCOM::Response class for Home Eas
 
 =head1 VERSION
 
-version 1.103240
+version 1.103250
 
 =head1 SYNOPSIS
 

@@ -1,14 +1,11 @@
 #!/usr/bin/perl
 
-# ABSTRACT: rfxcom-rx simple example script to read from an RFXCOM receiver
+# ABSTRACT: simple example script to read from an RFXCOM receiver
+# PODNAME: rfxcom-rx
 
 
 use warnings;
 use strict;
-package main;
-BEGIN {
-  $main::VERSION = '1.103240';
-}
 use Device::RFXCOM::RX;
 
 my $device = shift or die "Usage: $0 [device] [key=value] ...\n";
@@ -22,16 +19,17 @@ while (1) {
   print $data->summary,"\n";
 }
 
+
 __END__
 =pod
 
 =head1 NAME
 
-main - rfxcom-rx simple example script to read from an RFXCOM receiver
+rfxcom-rx - simple example script to read from an RFXCOM receiver
 
 =head1 VERSION
 
-version 1.103240
+version 1.103250
 
 =head1 SYNOPSIS
 
@@ -47,11 +45,24 @@ version 1.103240
 =head1 DESCRIPTION
 
 This script is an example of the usage of the L<Device::RFXCOM::RX>
-api.  It simply initializes the receiver and writes a summary of the
+API.  It simply initializes the receiver and writes a summary of the
 received RF messages to stdout.  The keys and values given on the
 command line become the parameter hash for the
 L<Device::RFXCOM::RX#new> constructor and are documented in that
 module.
+
+=head1 THANKS
+
+Special thanks to RFXCOM, L<http://www.rfxcom.com/>, for their
+excellent documentation and for giving me permission to use it to help
+me write this code.  I own a number of their products and highly
+recommend them.
+
+=head1 SEE ALSO
+
+L<Device::RFXCOM::RX>
+
+RFXCOM website: http://www.rfxcom.com/
 
 =head1 AUTHOR
 
