@@ -2,7 +2,7 @@ use strict;
 use warnings;
 package Device::RFXCOM::Encoder::HomeEasy;
 BEGIN {
-  $Device::RFXCOM::Encoder::HomeEasy::VERSION = '1.103250';
+  $Device::RFXCOM::Encoder::HomeEasy::VERSION = '1.103260';
 }
 
 # ABSTRACT: Device::RFXCOM::Encoder::HomeEasy encode HomeEasy RF messages
@@ -10,7 +10,7 @@ BEGIN {
 
 use 5.006;
 use constant DEBUG => $ENV{DEVICE_RFXCOM_ENCODER_HOMEEASY_DEBUG};
-use Carp qw/croak/;
+use Carp qw/croak carp/;
 use base 'Device::RFXCOM::Encoder';
 use Device::RFXCOM::Response::HomeEasy;
 
@@ -20,7 +20,16 @@ sub encode {
   my @bytes = ( 0, 0, 0, 0, 0 );
   my $length = 33;
   my $command;
+
+  unless (exists $p->{command} && exists $p->{unit} && exists $p->{address}) {
+    carp $self.'->encode: Invalid homeeasy message';
+    return [];
+  }
   if ($p->{command} eq 'preset') {
+    unless (exists $p->{level}) {
+      carp $self.'->encode: Invalid homeeasy message';
+      return [];
+    }
     $length = 36;
     $bytes[4] = $p->{level} << 4;
     $command = 0;
@@ -73,7 +82,7 @@ Device::RFXCOM::Encoder::HomeEasy - Device::RFXCOM::Encoder::HomeEasy encode Hom
 
 =head1 VERSION
 
-version 1.103250
+version 1.103260
 
 =head1 SYNOPSIS
 

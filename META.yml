@@ -34,4 +34,4 @@ requires:
 resources:
   bugtracker: http://github.com/beanz/device-rfxcom-perl/issues
   repository: git://github.com/beanz/device-rfxcom-perl.git
-version: 1.103250
+version: 1.103260

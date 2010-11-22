@@ -2,7 +2,7 @@ use strict;
 use warnings;
 package Device::RFXCOM::Encoder::X10;
 BEGIN {
-  $Device::RFXCOM::Encoder::X10::VERSION = '1.103250';
+  $Device::RFXCOM::Encoder::X10::VERSION = '1.103260';
 }
 
 # ABSTRACT: Device::RFXCOM::Encoder::X10 encode X10 RF messages
@@ -54,7 +54,7 @@ sub encode {
                                     });
     }
   } else {
-    carp $self.'->encode: Invalid x10.basic message';
+    carp $self.'->encode: Invalid x10 message';
   }
   return \@res;
 }
@@ -94,7 +94,7 @@ Device::RFXCOM::Encoder::X10 - Device::RFXCOM::Encoder::X10 encode X10 RF messag
 
 =head1 VERSION
 
-version 1.103250
+version 1.103260
 
 =head1 SYNOPSIS
 
