@@ -18,75 +18,44 @@ BEGIN {
   if ($@) {
     import Test::More skip_all => 'Missing AnyEvent module(s): '.$@;
   }
-  import Test::More tests => 27;
+  import Test::More;
 }
 
 my @connections =
   (
    [
-    '609f08',
-    '',
-    'f7',
-    '609f08f7',
-    '',
+    {
+     desc => 'partial message',
+     send => '609f08',
+    },
+    {
+     desc => 'sleep 1',
+     sleep => 0.3,
+    },
+    {
+     desc => 'rest of message',
+     send => 'f7',
+    },
+    {
+     desc => 'complete message',
+     send => '609f08f7',
+    },
+    {
+     desc => 'sleep 2',
+     sleep => 0.3,
+    },
    ],
   );
 
 my $cv = AnyEvent->condvar;
-my $server = tcp_server undef, undef, sub {
-  my ($fh, $host, $port) = @_;
-  print STDERR "In server\n" if DEBUG;
-  my $handle;
-  $handle = AnyEvent::Handle->new(fh => $fh,
-                                  on_error => sub {
-                                    warn "error $_[2]\n";
-                                    $_[0]->destroy;
-                                  },
-                                  on_eof => sub {
-                                    $handle->destroy; # destroy handle
-                                    warn "done.\n";
-                                  },
-                                  timeout => 1,
-                                  on_timeout => sub {
-                                    die "server timeout\n";
-                                  }
-                                 );
-  my $actions = shift @connections;
-  unless ($actions && @$actions) {
-    die "Server received unexpected connection\n";
-  }
-  handle_connection($handle, $actions);
-}, sub {
-  my ($fh, $host, $port) = @_;
-  $cv->send([$host, $port]);
-};
-
-sub handle_connection {
-  my ($handle, $actions) = @_;
-  print STDERR "In handle connection ", scalar @$actions, "\n" if DEBUG;
-  unless (scalar @$actions) {
-    print STDERR "closing connection\n" if DEBUG;
-    return $handle->push_shutdown;
-  }
-  my $send = shift @$actions;
-  unless ($send) {
-    # pause to permit read to happen
-    my $w; $w = AnyEvent->timer(after => 0.3, cb => sub {
-                                  handle_connection($handle, $actions);
-                                  undef $w;
-                                });
-    return;
-  }
-  print STDERR "Sending: ", $send, "\n" if DEBUG;
-  $send = pack "H*", $send;
-  print STDERR "Sending ", length $send, " bytes\n" if DEBUG;
-  $handle->push_write($send);
-  handle_connection($handle, $actions);
-  return;
-}
+my $server;
+eval { $server = test_server($cv, @connections) };
+plan skip_all => "Failed to create dummy server: $@" if ($@);
 
 my $addr = $cv->recv;
 $addr = $addr->[0].':'.$addr->[1];
+
+import Test::More tests => 27;
 
 use_ok('Device::W800');
 

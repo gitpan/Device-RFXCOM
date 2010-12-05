@@ -2,7 +2,7 @@ use strict;
 use warnings;
 package Device::RFXCOM::RX;
 BEGIN {
-  $Device::RFXCOM::RX::VERSION = '1.103260';
+  $Device::RFXCOM::RX::VERSION = '1.103390';
 }
 
 # ABSTRACT: Module to support RFXCOM RF receiver
@@ -189,7 +189,7 @@ Device::RFXCOM::RX - Module to support RFXCOM RF receiver
 
 =head1 VERSION
 
-version 1.103260
+version 1.103390
 
 =head1 SYNOPSIS
 

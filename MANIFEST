@@ -46,6 +46,7 @@ t/02-checksum-tester.t
 t/03-messages.t
 t/04-w800.t
 t/05-serial.t
+t/Helpers.pm
 t/author-critic.t
 t/lib/Device/SerialPort.pm
 t/make-test

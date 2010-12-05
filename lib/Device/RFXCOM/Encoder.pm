@@ -2,7 +2,7 @@ use strict;
 use warnings;
 package Device::RFXCOM::Encoder;
 BEGIN {
-  $Device::RFXCOM::Encoder::VERSION = '1.103260';
+  $Device::RFXCOM::Encoder::VERSION = '1.103390';
 }
 
 # ABSTRACT: Device::RFXCOM::Encoder base class for encoding RF messages
@@ -37,7 +37,7 @@ Device::RFXCOM::Encoder - Device::RFXCOM::Encoder base class for encoding RF mes
 
 =head1 VERSION
 
-version 1.103260
+version 1.103390
 
 =head1 SYNOPSIS
 

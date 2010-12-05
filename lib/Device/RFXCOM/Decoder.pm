@@ -2,7 +2,7 @@ use strict;
 use warnings;
 package Device::RFXCOM::Decoder;
 BEGIN {
-  $Device::RFXCOM::Decoder::VERSION = '1.103260';
+  $Device::RFXCOM::Decoder::VERSION = '1.103390';
 }
 
 # ABSTRACT: Device::RFXCOM::Decoder base class for decoding RF messages
@@ -56,7 +56,7 @@ Device::RFXCOM::Decoder - Device::RFXCOM::Decoder base class for decoding RF mes
 
 =head1 VERSION
 
-version 1.103260
+version 1.103390
 
 =head1 SYNOPSIS
 

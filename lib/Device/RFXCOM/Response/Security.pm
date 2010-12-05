@@ -2,7 +2,7 @@ use strict;
 use warnings;
 package Device::RFXCOM::Response::Security;
 BEGIN {
-  $Device::RFXCOM::Response::Security::VERSION = '1.103260';
+  $Device::RFXCOM::Response::Security::VERSION = '1.103390';
 }
 
 # ABSTRACT: Device::RFXCOM::Response class for Security messages from RFXCOM receiver
@@ -53,7 +53,7 @@ Device::RFXCOM::Response::Security - Device::RFXCOM::Response class for Security
 
 =head1 VERSION
 
-version 1.103260
+version 1.103390
 
 =head1 SYNOPSIS
 
