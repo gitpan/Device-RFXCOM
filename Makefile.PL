@@ -33,17 +33,17 @@ my %WriteMakefileArgs = (
   'NAME' => 'Device::RFXCOM',
   'PREREQ_PM' => {
     'Carp' => '0',
-    'Device::SerialPort' => '0',
     'Exporter' => '0',
     'Fcntl' => '0',
     'IO::Handle' => '0',
     'IO::Select' => '0',
     'IO::Socket::INET' => '0',
     'Module::Pluggable' => '0',
+    'POSIX' => '0',
     'Time::HiRes' => '0',
     'constant' => '0'
   },
-  'VERSION' => '1.103390',
+  'VERSION' => '1.110430',
   'test' => {
     'TESTS' => 't/*.t'
   }

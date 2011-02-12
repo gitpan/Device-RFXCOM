@@ -2,7 +2,7 @@ use strict;
 use warnings;
 package Device::RFXCOM::Base;
 BEGIN {
-  $Device::RFXCOM::Base::VERSION = '1.103390';
+  $Device::RFXCOM::Base::VERSION = '1.110430';
 }
 
 # ABSTRACT: module for RFXCOM device base class
@@ -15,6 +15,7 @@ use constant {
 };
 use Carp qw/croak/;
 use Fcntl;
+use POSIX qw/:termios_h/;
 use IO::Handle;
 use IO::Select;
 use Time::HiRes;
@@ -108,22 +109,32 @@ sub _open_serial_port {
   my $self = shift;
   my $dev = $self->{device};
   print STDERR "Opening $dev as serial port\n" if DEBUG;
-  require Device::SerialPort; import Device::SerialPort;
-  my $ser =
-    Device::SerialPort->new($dev) or
-        croak "Failed to open '$dev' with Device::SerialPort: $!";
-  $ser->baudrate($self->{baud});
-  $ser->databits(8);
-  $ser->parity('none');
-  $ser->stopbits(1);
-  $ser->write_settings;
-  $ser->close;
-  $self->{serialport} = $ser if TESTING; # keep mock object
-  undef $ser;
   sysopen my $fh, $dev, O_RDWR|O_NOCTTY|O_NDELAY
     or croak "sysopen of '$dev' failed: $!";
   $fh->autoflush(1);
   binmode($fh);
+  my $fd = fileno($fh);
+  my $termios = POSIX::Termios->new;
+  $termios->getattr($fd) or die "POSIX::Termios->getattr(...) failed: $!\n";
+  my $lflag = $termios->getlflag();
+  $lflag &= ~(POSIX::ECHO | POSIX::ECHOK | POSIX::ICANON);
+  $termios->setlflag($lflag);
+  $termios->setcflag(POSIX::CS8 | POSIX::CREAD | POSIX::CLOCAL | POSIX::HUPCL);
+  $termios->setiflag(POSIX::IGNBRK | POSIX::IGNPAR);
+  my $baud = $self->{baud};
+  my $b;
+  if ($baud == 57600) {
+    $b = 0010001; ## no critic
+  } else {
+    eval qq/\$b = \&POSIX::B$baud/; ## no critic
+    die "Unsupported baud rate: $baud\n" if ($@ || !defined $b);
+  }
+  $termios->setospeed($b)
+    or die "POSIX::Termios->setospeed(...) failed: $!\n";
+  $termios->setispeed($b)
+    or die "POSIX::Termios->setospeed(...) failed: $!\n";
+  $termios->setattr($fd, POSIX::TCSANOW)
+    or die "POSIX::Termios->setattr(...) failed: $!\n";
   return $self->{fh} = $fh;
 }
 
@@ -143,7 +154,7 @@ Device::RFXCOM::Base - module for RFXCOM device base class
 
 =head1 VERSION
 
-version 1.103390
+version 1.110430
 
 =head1 SYNOPSIS
 

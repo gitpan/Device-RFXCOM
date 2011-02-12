@@ -21,17 +21,17 @@ meta-spec:
 name: Device-RFXCOM
 requires:
   Carp: 0
-  Device::SerialPort: 0
   Exporter: 0
   Fcntl: 0
   IO::Handle: 0
   IO::Select: 0
   IO::Socket::INET: 0
   Module::Pluggable: 0
+  POSIX: 0
   Time::HiRes: 0
   constant: 0
   perl: 5.006
 resources:
   bugtracker: http://github.com/beanz/device-rfxcom-perl/issues
   repository: git://github.com/beanz/device-rfxcom-perl.git
-version: 1.103390
+version: 1.110430

@@ -17,6 +17,7 @@ dist.ini
 lib/Device/RFXCOM.pod
 lib/Device/RFXCOM/Base.pm
 lib/Device/RFXCOM/Decoder.pm
+lib/Device/RFXCOM/Decoder/CM119.pm
 lib/Device/RFXCOM/Decoder/Digimax.pm
 lib/Device/RFXCOM/Decoder/Electrisave.pm
 lib/Device/RFXCOM/Decoder/HomeEasy.pm
@@ -48,7 +49,7 @@ t/04-w800.t
 t/05-serial.t
 t/Helpers.pm
 t/author-critic.t
-t/lib/Device/SerialPort.pm
+t/lib/POSIX.pm
 t/make-test
 t/release-eol.t
 t/release-kwalitee.t
@@ -96,6 +97,7 @@ t/rf/oregon-wgr918-01-wind.txt
 t/rf/oregon-wtgr800-01-wind.txt
 t/rf/oregon-wtgr800-02-temphydro.txt
 t/rf/oregon-wtgr800-03-low-battery.txt
+t/rf/owl-cm119-01.txt
 t/rf/rfxmeter-01.txt
 t/rf/rfxmeter-02-parity-error.txt
 t/rf/rfxmeter-03-unsupported.txt
