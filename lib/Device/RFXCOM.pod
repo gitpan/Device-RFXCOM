@@ -14,7 +14,7 @@ Device::RFXCOM - Perl modules for RFXCOM RF receivers and transmitters
 
 =head1 VERSION
 
-version 1.110430
+version 1.110440
 
 =head1 SYNOPSIS
 

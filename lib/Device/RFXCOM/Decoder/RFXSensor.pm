@@ -2,7 +2,7 @@ use strict;
 use warnings;
 package Device::RFXCOM::Decoder::RFXSensor;
 BEGIN {
-  $Device::RFXCOM::Decoder::RFXSensor::VERSION = '1.110430';
+  $Device::RFXCOM::Decoder::RFXSensor::VERSION = '1.110440';
 }
 
 # ABSTRACT: Device::RFXCOM::Decoder::RFXSensor decode RFXSensor RF messages
@@ -163,7 +163,7 @@ Device::RFXCOM::Decoder::RFXSensor - Device::RFXCOM::Decoder::RFXSensor decode R
 
 =head1 VERSION
 
-version 1.110430
+version 1.110440
 
 =head1 SYNOPSIS
 

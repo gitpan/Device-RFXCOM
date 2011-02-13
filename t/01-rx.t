@@ -60,7 +60,7 @@ plan skip_all => "Failed to create dummy server: $@" if ($@);
 my ($host,$port) = @{$cv->recv};
 my $addr = join ':', $host, $port;
 
-import Test::More tests => 48;
+import Test::More tests => 49;
 
 use_ok('Device::RFXCOM::RX');
 
@@ -72,10 +72,11 @@ my $rx = Device::RFXCOM::RX->new(device => $addr,
 ok($rx, 'instantiate Device::RFXCOM::RX object');
 
 is($rx->queue, 2, 'queued initialization');
+is($rx->baud, 4800, 'baud initialization');
 
 $cv = AnyEvent->condvar;
 my $res;
-my $w = AnyEvent->io(fh => $rx->fh, poll => 'r',
+my $w = AnyEvent->io(fh => $rx->filehandle, poll => 'r',
                      cb => sub { $cv->send($rx->read()) });
 $res = $cv->recv;
 is($res->type, 'version', 'got version check response');

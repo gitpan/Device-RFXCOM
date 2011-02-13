@@ -2,7 +2,7 @@ use strict;
 use warnings;
 package Device::RFXCOM::Base;
 BEGIN {
-  $Device::RFXCOM::Base::VERSION = '1.110430';
+  $Device::RFXCOM::Base::VERSION = '1.110440';
 }
 
 # ABSTRACT: module for RFXCOM device base class
@@ -84,7 +84,7 @@ sub _real_write {
 }
 
 
-sub fh {
+sub filehandle {
   shift->{fh}
 }
 
@@ -109,33 +109,55 @@ sub _open_serial_port {
   my $self = shift;
   my $dev = $self->{device};
   print STDERR "Opening $dev as serial port\n" if DEBUG;
-  sysopen my $fh, $dev, O_RDWR|O_NOCTTY|O_NDELAY
+  my $flags = O_RDWR;
+  eval { $flags |= O_NOCTTY }; # ignore undefined error
+  eval { $flags |= O_NDELAY }; # ignore undefined error
+  sysopen my $fh, $dev, $flags
     or croak "sysopen of '$dev' failed: $!";
   $fh->autoflush(1);
   binmode($fh);
+  if (-c $fh) {
+    $self->_termios_config($fh);
+  }
+  return $self->{fh} = $fh;
+}
+
+
+sub baud {
+  shift->{baud}
+}
+
+sub _posix_baud {
+  my $self = shift;
+  my $baud = $self->baud;
+  my $b;
+  if ($baud == 57600) {
+    $b = 0010001; ## no critic
+  } else {
+    eval qq/\$b = \&POSIX::B$baud/; ## no critic
+    die "Unsupported baud rate: $baud\n" if ($@);
+  }
+  $b;
+}
+
+sub _termios_config {
+  my ($self, $fh) = @_;
   my $fd = fileno($fh);
   my $termios = POSIX::Termios->new;
   $termios->getattr($fd) or die "POSIX::Termios->getattr(...) failed: $!\n";
   my $lflag = $termios->getlflag();
   $lflag &= ~(POSIX::ECHO | POSIX::ECHOK | POSIX::ICANON);
   $termios->setlflag($lflag);
-  $termios->setcflag(POSIX::CS8 | POSIX::CREAD | POSIX::CLOCAL | POSIX::HUPCL);
+  $termios->setcflag(POSIX::CS8 | POSIX::CREAD |
+                     POSIX::CLOCAL | POSIX::HUPCL);
   $termios->setiflag(POSIX::IGNBRK | POSIX::IGNPAR);
-  my $baud = $self->{baud};
-  my $b;
-  if ($baud == 57600) {
-    $b = 0010001; ## no critic
-  } else {
-    eval qq/\$b = \&POSIX::B$baud/; ## no critic
-    die "Unsupported baud rate: $baud\n" if ($@ || !defined $b);
-  }
-  $termios->setospeed($b)
+  my $baud = $self->_posix_baud;
+  $termios->setospeed($baud)
     or die "POSIX::Termios->setospeed(...) failed: $!\n";
-  $termios->setispeed($b)
+  $termios->setispeed($baud)
     or die "POSIX::Termios->setospeed(...) failed: $!\n";
   $termios->setattr($fd, POSIX::TCSANOW)
     or die "POSIX::Termios->setattr(...) failed: $!\n";
-  return $self->{fh} = $fh;
 }
 
 sub _time_now {
@@ -154,7 +176,7 @@ Device::RFXCOM::Base - module for RFXCOM device base class
 
 =head1 VERSION
 
-version 1.110430
+version 1.110440
 
 =head1 SYNOPSIS
 
@@ -171,9 +193,13 @@ Module for RFXCOM device base class.
 Returns the number of messages in the queue to be sent to the
 device.
 
-=head2 C<fh()>
+=head2 C<filehandle()>
 
 This method returns the file handle for the device.
+
+=head2 C<baud()>
+
+Returns the baud rate.
 
 =head1 THANKS
 

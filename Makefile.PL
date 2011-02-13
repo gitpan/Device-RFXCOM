@@ -15,7 +15,6 @@ my %WriteMakefileArgs = (
     'AnyEvent' => '0',
     'AnyEvent::Handle' => '0',
     'AnyEvent::Socket' => '0',
-    'Data::Dumper' => '0',
     'English' => '0',
     'File::Temp' => '0',
     'Test::More' => '0'
@@ -43,7 +42,7 @@ my %WriteMakefileArgs = (
     'Time::HiRes' => '0',
     'constant' => '0'
   },
-  'VERSION' => '1.110430',
+  'VERSION' => '1.110440',
   'test' => {
     'TESTS' => 't/*.t'
   }

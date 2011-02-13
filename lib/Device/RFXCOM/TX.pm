@@ -2,7 +2,7 @@ use strict;
 use warnings;
 package Device::RFXCOM::TX;
 BEGIN {
-  $Device::RFXCOM::TX::VERSION = '1.110430';
+  $Device::RFXCOM::TX::VERSION = '1.110440';
 }
 
 # ABSTRACT: Module to support an RFXCOM RF transmitter
@@ -112,7 +112,7 @@ sub transmit {
 sub wait_for_ack {
   my ($self, $timeout) = @_;
   $timeout = $self->{ack_timeout} unless (defined $timeout);
-  my $fh = $self->fh;
+  my $fh = $self->filehandle;
   my $sel = IO::Select->new($fh);
   $sel->can_read($timeout) or return;
   my $buf;
@@ -137,7 +137,7 @@ Device::RFXCOM::TX - Module to support an RFXCOM RF transmitter
 
 =head1 VERSION
 
-version 1.110430
+version 1.110440
 
 =head1 SYNOPSIS
 

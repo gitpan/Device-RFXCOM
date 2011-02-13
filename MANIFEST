@@ -98,6 +98,10 @@ t/rf/oregon-wtgr800-01-wind.txt
 t/rf/oregon-wtgr800-02-temphydro.txt
 t/rf/oregon-wtgr800-03-low-battery.txt
 t/rf/owl-cm119-01.txt
+t/rf/owl-cm119-02-unexpected-channel.txt
+t/rf/owl-cm119-03-invalid.txt
+t/rf/owl-cm119-04-non-cm119.txt
+t/rf/owl-cm119-05-zero-channel.txt
 t/rf/rfxmeter-01.txt
 t/rf/rfxmeter-02-parity-error.txt
 t/rf/rfxmeter-03-unsupported.txt

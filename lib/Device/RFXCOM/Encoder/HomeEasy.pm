@@ -2,7 +2,7 @@ use strict;
 use warnings;
 package Device::RFXCOM::Encoder::HomeEasy;
 BEGIN {
-  $Device::RFXCOM::Encoder::HomeEasy::VERSION = '1.110430';
+  $Device::RFXCOM::Encoder::HomeEasy::VERSION = '1.110440';
 }
 
 # ABSTRACT: Device::RFXCOM::Encoder::HomeEasy encode HomeEasy RF messages
@@ -82,7 +82,7 @@ Device::RFXCOM::Encoder::HomeEasy - Device::RFXCOM::Encoder::HomeEasy encode Hom
 
 =head1 VERSION
 
-version 1.110430
+version 1.110440
 
 =head1 SYNOPSIS
 

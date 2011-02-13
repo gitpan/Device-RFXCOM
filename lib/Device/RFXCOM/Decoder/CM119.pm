@@ -2,7 +2,7 @@ use strict;
 use warnings;
 package Device::RFXCOM::Decoder::CM119;
 BEGIN {
-  $Device::RFXCOM::Decoder::CM119::VERSION = '1.110430';
+  $Device::RFXCOM::Decoder::CM119::VERSION = '1.110440';
 }
 
 # ABSTRACT: Device::RFXCOM::Decoder::CM119 decode OWL CM119 RF messages
@@ -19,17 +19,17 @@ use Device::RFXCOM::Response::Sensor;
 sub decode {
   my ($self, $parent, $message, $bytes, $bits, $result) = @_;
   $bits == 108 or return;
-  $bytes->[0]==0x2a or return;
+  ($bytes->[0]&0xf)==0xa or return;
 
   my $s = _ns(1, 10, $bytes);
   $s += lo_nibble($bytes->[11]);
   $s -= (lo_nibble($bytes->[12])<<4) + hi_nibble($bytes->[11]);
   $s == 0 or return;
 
-  if ($bytes->[0]&0xc0) {
-    warn "CM119 channel not 1 - 3?";
-  }
   my $ch = $bytes->[0]>>4;
+  if ($ch < 1 || $ch > 3) {
+    warn "CM119 channel not 1 - 3?\n";
+  }
   my $device = sprintf "%02x", $bytes->[2];
   my $counter = lo_nibble($bytes->[1]);
   my $now = (lo_nibble($bytes->[5])<<16) + ($bytes->[4]<<8) + $bytes->[3];
@@ -67,7 +67,7 @@ Device::RFXCOM::Decoder::CM119 - Device::RFXCOM::Decoder::CM119 decode OWL CM119
 
 =head1 VERSION
 
-version 1.110430
+version 1.110440
 
 =head1 SYNOPSIS
 

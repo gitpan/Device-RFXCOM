@@ -1,5 +1,9 @@
 Revision history for Perl extension Device::RFXCOM.
 
+1.110440  2011-02-13 20:54:26 Europe/London
+        - Minor test portability fixes.
+        - CM119 channel fixes and more test coverage.
+
 1.110430  2011-02-12 11:21:41 Europe/London
         - Initial CM119 support.  Thanks to Guigui Abloc and Bert.
         - Fix serial port setup (issue #1).  Thanks to maxatome.

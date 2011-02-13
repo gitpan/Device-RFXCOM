@@ -2,7 +2,7 @@ use strict;
 use warnings;
 package Device::RFXCOM::Response::Sensor;
 BEGIN {
-  $Device::RFXCOM::Response::Sensor::VERSION = '1.110430';
+  $Device::RFXCOM::Response::Sensor::VERSION = '1.110440';
 }
 
 # ABSTRACT: Device::RFXCOM::Response class for Sensor message from RFXCOM receiver
@@ -52,7 +52,7 @@ Device::RFXCOM::Response::Sensor - Device::RFXCOM::Response class for Sensor mes
 
 =head1 VERSION
 
-version 1.110430
+version 1.110440
 
 =head1 SYNOPSIS
 
