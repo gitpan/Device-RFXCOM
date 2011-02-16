@@ -2,7 +2,7 @@ use strict;
 use warnings;
 package Device::RFXCOM::Base;
 BEGIN {
-  $Device::RFXCOM::Base::VERSION = '1.110470';
+  $Device::RFXCOM::Base::VERSION = '1.110471';
 }
 
 # ABSTRACT: module for RFXCOM device base class
@@ -176,7 +176,7 @@ Device::RFXCOM::Base - module for RFXCOM device base class
 
 =head1 VERSION
 
-version 1.110470
+version 1.110471
 
 =head1 SYNOPSIS
 

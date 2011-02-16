@@ -2,7 +2,7 @@ NAME
     Device::RFXCOM - Perl modules for RFXCOM RF receivers and transmitters
 
 VERSION
-    version 1.110470
+    version 1.110471
 
 SYNOPSIS
       # see Device::RFXCOM::RX (and corresponding example script

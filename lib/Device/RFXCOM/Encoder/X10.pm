@@ -2,7 +2,7 @@ use strict;
 use warnings;
 package Device::RFXCOM::Encoder::X10;
 BEGIN {
-  $Device::RFXCOM::Encoder::X10::VERSION = '1.110470';
+  $Device::RFXCOM::Encoder::X10::VERSION = '1.110471';
 }
 
 # ABSTRACT: Device::RFXCOM::Encoder::X10 encode X10 RF messages
@@ -94,7 +94,7 @@ Device::RFXCOM::Encoder::X10 - Device::RFXCOM::Encoder::X10 encode X10 RF messag
 
 =head1 VERSION
 
-version 1.110470
+version 1.110471
 
 =head1 SYNOPSIS
 
