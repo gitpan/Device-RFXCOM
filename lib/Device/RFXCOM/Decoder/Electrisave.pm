@@ -2,7 +2,7 @@ use strict;
 use warnings;
 package Device::RFXCOM::Decoder::Electrisave;
 BEGIN {
-  $Device::RFXCOM::Decoder::Electrisave::VERSION = '1.110440';
+  $Device::RFXCOM::Decoder::Electrisave::VERSION = '1.110470';
 }
 
 # ABSTRACT: Device::RFXCOM::Decoder::Electrisave decode Electrisave RF messages
@@ -35,6 +35,12 @@ sub decode {
                                             measurement => 'current',
                                             value => $ct[$index]);
   }
+  push @{$result->{messages}},
+    Device::RFXCOM::Response::Sensor->new(device => $device,
+                                          measurement => 'battery',
+                                          value => (($bytes->[1]&0x10)
+                                                    ? 10 : 90),
+                                          units => '%');
   return 1;
 }
 
@@ -50,7 +56,7 @@ Device::RFXCOM::Decoder::Electrisave - Device::RFXCOM::Decoder::Electrisave deco
 
 =head1 VERSION
 
-version 1.110440
+version 1.110470
 
 =head1 SYNOPSIS
 

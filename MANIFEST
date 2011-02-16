@@ -65,6 +65,7 @@ t/rf/electrisave-01.txt
 t/rf/electrisave-02-invalid-byte1.txt
 t/rf/electrisave-03-invalid-byte9.txt
 t/rf/electrisave-04-invalid-byte10.txt
+t/rf/electrisave-05-low-battery.txt
 t/rf/homeeasy-01-off.txt
 t/rf/homeeasy-02-group-on.txt
 t/rf/homeeasy-03-group-on-dup.txt
