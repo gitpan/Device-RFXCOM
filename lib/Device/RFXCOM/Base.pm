@@ -2,7 +2,7 @@ use strict;
 use warnings;
 package Device::RFXCOM::Base;
 BEGIN {
-  $Device::RFXCOM::Base::VERSION = '1.110471';
+  $Device::RFXCOM::Base::VERSION = '1.110800';
 }
 
 # ABSTRACT: module for RFXCOM device base class
@@ -90,7 +90,7 @@ sub filehandle {
 
 sub _open {
   my $self = shift;
-  $self->{device} =~ m!/! ?
+  $self->{device} =~ m![/\\]! ?
     $self->_open_serial_port(@_) : $self->_open_tcp_port(@_)
 }
 
@@ -176,7 +176,7 @@ Device::RFXCOM::Base - module for RFXCOM device base class
 
 =head1 VERSION
 
-version 1.110471
+version 1.110800
 
 =head1 SYNOPSIS
 
