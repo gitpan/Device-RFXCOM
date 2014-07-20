@@ -1,10 +1,7 @@
 use strict;
 use warnings;
 package Device::RFXCOM::TX;
-BEGIN {
-  $Device::RFXCOM::TX::VERSION = '1.110800';
-}
-
+$Device::RFXCOM::TX::VERSION = '1.142010';
 # ABSTRACT: Module to support an RFXCOM RF transmitter
 
 
@@ -127,9 +124,11 @@ sub wait_for_ack {
 
 1;
 
-
 __END__
+
 =pod
+
+=encoding UTF-8
 
 =head1 NAME
 
@@ -137,13 +136,15 @@ Device::RFXCOM::TX - Module to support an RFXCOM RF transmitter
 
 =head1 VERSION
 
-version 1.110800
+version 1.142010
 
 =head1 SYNOPSIS
 
   # for a USB-based device, transmitting X10 RF messages
   my $tx = Device::RFXCOM::TX->new(device => '/dev/ttyUSB0', x10 => 1);
-  $tx->transmit(type => 'homeeasy', command => 'on', ...);
+  $tx->transmit(type => 'homeeasy', command => 'on',
+                # ...
+               );
   $tx->wait_for_ack() while ($tx->queue);
 
 =head1 DESCRIPTION
@@ -267,14 +268,13 @@ RFXCOM website: http://www.rfxcom.com/
 
 =head1 AUTHOR
 
-Mark Hindess <soft-rfxcom@temporalanomaly.com>
+Mark Hindess <soft-cpan@temporalanomaly.com>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2010 by Mark Hindess.
+This software is copyright (c) 2014 by Mark Hindess.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
 
 =cut
-

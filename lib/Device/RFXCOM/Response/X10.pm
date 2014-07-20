@@ -1,10 +1,7 @@
 use strict;
 use warnings;
 package Device::RFXCOM::Response::X10;
-BEGIN {
-  $Device::RFXCOM::Response::X10::VERSION = '1.110800';
-}
-
+$Device::RFXCOM::Response::X10::VERSION = '1.142010';
 # ABSTRACT: Device::RFXCOM::Response class for X10 message from RFXCOM receiver
 
 
@@ -45,9 +42,11 @@ sub summary {
 
 1;
 
-
 __END__
+
 =pod
+
+=encoding UTF-8
 
 =head1 NAME
 
@@ -55,7 +54,7 @@ Device::RFXCOM::Response::X10 - Device::RFXCOM::Response class for X10 message f
 
 =head1 VERSION
 
-version 1.110800
+version 1.142010
 
 =head1 SYNOPSIS
 
@@ -84,7 +83,7 @@ undefined if no unit code is present for the house code.
 =head2 C<house()>
 
 This method returns the X10 house code from the RF message.  That is,
-C<a>, C<b>, ... C<p>.  It will be undefined if L<device> is defined.
+C<a>, C<b>, ... C<p>.  It will be undefined if device() is defined.
 
 =head2 C<command()>
 
@@ -113,14 +112,13 @@ RFXCOM website: http://www.rfxcom.com/
 
 =head1 AUTHOR
 
-Mark Hindess <soft-rfxcom@temporalanomaly.com>
+Mark Hindess <soft-cpan@temporalanomaly.com>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2010 by Mark Hindess.
+This software is copyright (c) 2014 by Mark Hindess.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
 
 =cut
-

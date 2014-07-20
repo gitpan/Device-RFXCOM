@@ -1,10 +1,7 @@
 use strict;
 use warnings;
 package Device::RFXCOM::Decoder::HomeEasy;
-BEGIN {
-  $Device::RFXCOM::Decoder::HomeEasy::VERSION = '1.110800';
-}
-
+$Device::RFXCOM::Decoder::HomeEasy::VERSION = '1.142010';
 # ABSTRACT: Device::RFXCOM::Decoder::HomeEasy decode HomeEasy RF messages
 
 
@@ -71,9 +68,11 @@ sub from_rf {
 
 1;
 
-
 __END__
+
 =pod
+
+=encoding UTF-8
 
 =head1 NAME
 
@@ -81,7 +80,7 @@ Device::RFXCOM::Decoder::HomeEasy - Device::RFXCOM::Decoder::HomeEasy decode Hom
 
 =head1 VERSION
 
-version 1.110800
+version 1.142010
 
 =head1 SYNOPSIS
 
@@ -120,14 +119,13 @@ RFXCOM website: http://www.rfxcom.com/
 
 =head1 AUTHOR
 
-Mark Hindess <soft-rfxcom@temporalanomaly.com>
+Mark Hindess <soft-cpan@temporalanomaly.com>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2010 by Mark Hindess.
+This software is copyright (c) 2014 by Mark Hindess.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
 
 =cut
-

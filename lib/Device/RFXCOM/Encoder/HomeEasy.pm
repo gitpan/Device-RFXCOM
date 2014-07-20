@@ -1,10 +1,7 @@
 use strict;
 use warnings;
 package Device::RFXCOM::Encoder::HomeEasy;
-BEGIN {
-  $Device::RFXCOM::Encoder::HomeEasy::VERSION = '1.110800';
-}
-
+$Device::RFXCOM::Encoder::HomeEasy::VERSION = '1.142010';
 # ABSTRACT: Device::RFXCOM::Encoder::HomeEasy encode HomeEasy RF messages
 
 
@@ -72,9 +69,11 @@ sub encode_address {
 
 1;
 
-
 __END__
+
 =pod
+
+=encoding UTF-8
 
 =head1 NAME
 
@@ -82,7 +81,7 @@ Device::RFXCOM::Encoder::HomeEasy - Device::RFXCOM::Encoder::HomeEasy encode Hom
 
 =head1 VERSION
 
-version 1.110800
+version 1.142010
 
 =head1 SYNOPSIS
 
@@ -91,7 +90,7 @@ version 1.110800
 =head1 DESCRIPTION
 
 This is a module for encoding RF messages for HomeEasy
-(L<http://www.homeeasy.eu/>) devices so that that can be dispatched to
+(L<http://www.homeeasy.eu/>) devices so that they can be dispatched to
 an RFXCOM RF transmitter.
 
 =head1 METHODS
@@ -120,14 +119,13 @@ RFXCOM website: http://www.rfxcom.com/
 
 =head1 AUTHOR
 
-Mark Hindess <soft-rfxcom@temporalanomaly.com>
+Mark Hindess <soft-cpan@temporalanomaly.com>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2010 by Mark Hindess.
+This software is copyright (c) 2014 by Mark Hindess.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
 
 =cut
-
